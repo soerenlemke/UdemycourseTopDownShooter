@@ -1,22 +1,33 @@
-using System;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private Rigidbody _rb;
+    
+    [Header("Movement data")]
+    public float moveSpeed;
+    public float rotateSpeed;
+    
+    private float _verticalInput;
+    private float _horizontalInput;
+    
     void Start()
     {
-        Debug.Log("Start was called");
+        _rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        Debug.Log("Update was called");
+        _verticalInput = Input.GetAxis("Vertical");
+        _horizontalInput = Input.GetAxis("Horizontal");
     }
 
     private void FixedUpdate()
     {
-        Debug.Log("FixedUpdate was called");
+        var movement = transform.forward * (moveSpeed * _verticalInput);
+        
+        _rb.linearVelocity = movement;
+        
+        transform.Rotate(0, _horizontalInput * rotateSpeed, 0);
     }
 }
