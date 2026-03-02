@@ -1,0 +1,29 @@
+﻿# Unity YAML-Dateien als Text behandeln (für Merge-Unterstützung)
+*.cs        text eol=lf
+*.shader    text eol=lf
+*.mat       merge=unityyamlmerge eol=lf
+*.anim      merge=unityyamlmerge eol=lf
+*.unity     merge=unityyamlmerge eol=lf
+*.prefab    merge=unityyamlmerge eol=lf
+*.physicsMaterial2D merge=unityyamlmerge eol=lf
+*.physicsMaterial    merge=unityyamlmerge eol=lf
+*.asset     merge=unityyamlmerge eol=lf
+*.meta      merge=unityyamlmerge eol=lf
+*.controller merge=unityyamlmerge eol=lf
+
+# Binärdateien explizit als binary markieren (kein Diff/Merge)
+*.png       binary
+*.jpg       binary
+*.jpeg      binary
+*.gif       binary
+*.psd       binary
+*.pdf       binary
+*.mp3       binary
+*.wav       binary
+*.ogg       binary
+*.fbx       binary
+*.blend     binary
+*.ttf       binary
+*.otf       binary
+*.dll       binary
+*.zip       binary
