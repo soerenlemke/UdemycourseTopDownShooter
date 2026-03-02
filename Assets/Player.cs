@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Player : MonoBehaviour
 {
@@ -11,7 +12,11 @@ public class Player : MonoBehaviour
     private float _verticalInput;
     private float _horizontalInput;
     
-    [Space]
+    [FormerlySerializedAs("tankTower")] [Header("Tower data")]
+    public Transform tankTowerTransform;
+    public float towerRotationSpeed;
+    
+    [Header("Aim data")]
     public LayerMask whatIsAimMask;
     public Transform aimTransform;
     
@@ -35,6 +40,13 @@ public class Player : MonoBehaviour
         _rb.linearVelocity = movement;
         
         transform.Rotate(0, _horizontalInput * rotateSpeed, 0);
+        
+        var direction = aimTransform.position - tankTowerTransform.position;
+        direction.y = 0;
+        
+        var newRotation = Quaternion.LookRotation(direction);
+        tankTowerTransform.rotation =
+            Quaternion.RotateTowards(tankTowerTransform.rotation, newRotation, towerRotationSpeed);
     }
 
     private void UpdateAim()
